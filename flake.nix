@@ -44,6 +44,27 @@
         ];
       };
 
+      hp-laptop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; hw_file = "hp-laptop"; };
+        modules = [
+          ./configuration.nix
+          ./devices/hp-laptop
+
+          home-manager.nixosModules.home-manager
+
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.mystiafin = import ./home.nix;
+            home-manager.extraSpecialArgs = { inherit inputs; device = "hp-laptop"; };
+            home-manager.backupFileExtension = "backup";
+            home-manager.sharedModules = [ inputs.nixvim.homeModules.nixvim ];
+          }
+        ];
+      };
+
+
       thinkpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; hw_file = "thinkpad"; };
