@@ -49,7 +49,7 @@
         specialArgs = { inherit inputs; hw_file = "hp-laptop"; };
         modules = [
           ./configuration.nix
-          ./devices/hp-laptop
+          ./devices/hp-laptop.nix
 
           home-manager.nixosModules.home-manager
 
