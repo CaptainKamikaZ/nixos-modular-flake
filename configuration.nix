@@ -8,6 +8,7 @@
       ./devices/${hw_file}.nix
       ./modules/desktop/tablet.nix
       ./modules/boot.nix
+      ./modules/desktop/noctalia.nix #added
       ./modules/desktop/nvidia.nix
       ./modules/desktop/games.nix
       ./modules/variables.nix
@@ -38,7 +39,7 @@
     enable = true;
     enableSSHSupport = true;
   };
-
+  
   time.timeZone = "America/Chicago";
 
   security.polkit.enable = true;
