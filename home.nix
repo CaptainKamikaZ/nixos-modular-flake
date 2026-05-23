@@ -16,9 +16,9 @@ in
     ];
   };
 
-  home.username = "mystiafin";
-  home.homeDirectory = "/home/mystiafin";
-  home.stateVersion = "25.05";
+  home.username = "justin";
+  home.homeDirectory = "/home/justin";
+  home.stateVersion = "25.11";
   programs.home-manager.enable = true;
 
   imports = [
