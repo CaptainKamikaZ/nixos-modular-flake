@@ -43,8 +43,6 @@ in
   home.packages = with pkgs; [
     tmux
     wlogout
-    cloudflare-warp
-    cloudflare-cli
     brightnessctl
     nerd-fonts.jetbrains-mono
     vista-fonts
@@ -134,5 +132,7 @@ in
   '';
 
   programs.bash.enable = true;
+  programs.firefox.enable = true;
   programs.zen-browser.enable = true;
+  dconf.enable = false;
 }
