@@ -7,7 +7,6 @@
   services.libinput.enable = true;
   services.printing.enable = true;
   services.openssh.enable = true;
-  services.cloudflare-warp.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
   services.flatpak.enable = true;
