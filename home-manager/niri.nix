@@ -5,17 +5,17 @@ let
   rawConfig = builtins.readFile ./config/niri.kdl;
   finalConfig = builtins.replaceStrings [ "@TERMINAL@" ] [ terminalCmd ] rawConfig;
 in
-
+{
 xdg.configFile."niri/config.kdl".text = ''
-  spawn-at-startup {
-    command "qs"
-    args "-c" "noctalia-shell"
-  }
-
-  spawn-at-startup {
-    command "bash"
-    args "-c" "${pkgs.tmux}/bin/tmux new-session -d -s warm-up; sleep 6; ${pkgs.tmux}/bin/tmux kill-session -t warm-up"
-  }
+#  spawn-at-startup {
+#    command "qs"
+#    args "-c" "noctalia-shell"
+#  }
+#
+#  spawn-at-startup {
+#    command "bash"
+#    args "-c" "${pkgs.tmux}/bin/tmux new-session -d -s warm-up; sleep 6; ${pkgs.tmux}/bin/tmux kill-session -t warm-up"
+#  }
 
   ${if device == "thinkpad" then ''
     output "eDP-1" {
@@ -31,4 +31,4 @@ xdg.configFile."niri/config.kdl".text = ''
 
   ${finalConfig}
 '';
-
+}

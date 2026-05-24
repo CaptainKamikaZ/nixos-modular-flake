@@ -10,6 +10,9 @@
   services.gvfs.enable = true;
   services.udisks2.enable = true;
   services.flatpak.enable = true;
+  
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
 
   services.pipewire = {
     enable = true;
