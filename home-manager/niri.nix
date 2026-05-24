@@ -6,23 +6,29 @@ let
   finalConfig = builtins.replaceStrings [ "@TERMINAL@" ] [ terminalCmd ] rawConfig;
 in
 
-{
-  xdg.configFile."niri/config.kdl".text = ''
-    spawn-at-startup "qs" "-c" "noctalia-shell"
-    spawn-at-startup "bash" "-c" "${pkgs.tmux}/bin/tmux new-session -d -s warm-up; sleep 6; ${pkgs.tmux}/bin/tmux kill-session -t warm-up"
+xdg.configFile."niri/config.kdl".text = ''
+  spawn-at-startup {
+    command "qs"
+    args "-c" "noctalia-shell"
+  }
 
-    ${if device == "thinkpad" then ''
-      output "eDP-1" {
-          mode "1337x768@60"
-          scale 1.0
-      }
-    '' else ''
-      output "eDP-1" { 
-          mode "1920x1080@144"
-          scale 1.25
-      }
-    ''}
+  spawn-at-startup {
+    command "bash"
+    args "-c" "${pkgs.tmux}/bin/tmux new-session -d -s warm-up; sleep 6; ${pkgs.tmux}/bin/tmux kill-session -t warm-up"
+  }
 
-    ${finalConfig}
-  '';
-}
+  ${if device == "thinkpad" then ''
+    output "eDP-1" {
+      mode "1337x768@60"
+      scale 1.0
+    }
+  '' else ''
+    output "eDP-1" {
+      mode "1920x1080@144"
+      scale 1.25
+    }
+  ''}
+
+  ${finalConfig}
+'';
+
