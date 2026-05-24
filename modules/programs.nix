@@ -18,6 +18,6 @@
   programs.hyprland.enable = true;
   programs.fish.enable = true;
   programs.mtr.enable = true;
-  #programs.dconf.enable = true;
+  programs.dconf.enable = true;
   programs.bash.enable = true;
 }
