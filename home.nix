@@ -79,6 +79,7 @@ in
     winetricks
     zed-editor
     kdePackages.kdenlive
+    discord
     onlyoffice-desktopeditors
     aerc
     typst

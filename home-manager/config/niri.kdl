@@ -107,27 +107,6 @@ input {
     position x=1280 y=0
 }
 
-output "DP-3" {
-    mode "1920x1080@60.000"
-    scale 1
-    transform "normal"
-    position x=0 y=1080
-    focus-at-startup
-    
-    }
-output "DP-2" {
-    mode "1600x900@59.978"
-    scale 1
-    transform "270"
-    position x=1920 y=700
-    }
-output "HDMI-A-1" {
-    mode "1920x1080@60.000"
-    scale 1
-    transform "normal"
-    position x=0 y=0
-    }
-
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Layout
@@ -291,11 +270,22 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
-//spawn-at-startup "/run/current-system/sw/bin/qs"
-spawn-at-startup "qs"
-spawn-at-startup "${self'.packages.noctalia-wrapped}/bin/noctalia-shell"
-spawn-at-startup "~/.nix-profile/etc/profile.d/hm-session-vars.sh"
+spawn-at-startup {
+    command "waybar"
+}
+
+spawn-at-startup {
+    command "qs"
+}
+
+spawn-at-startup {
+    command "${self'.packages.noctalia-wrapped}/bin/noctalia-shell"
+}
+
+spawn-at-startup {
+    command "sh"
+    args "-c" "~/.nix-profile/etc/profile.d/hm-session-vars.sh"
+}
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"

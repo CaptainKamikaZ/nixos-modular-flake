@@ -6,29 +6,39 @@ let
   finalConfig = builtins.replaceStrings [ "@TERMINAL@" ] [ terminalCmd ] rawConfig;
 in
 {
-xdg.configFile."niri/config.kdl".text = ''
-#  spawn-at-startup {
-#    command "qs"
-#    args "-c" "noctalia-shell"
-#  }
-#
-#  spawn-at-startup {
-#    command "bash"
-#    args "-c" "${pkgs.tmux}/bin/tmux new-session -d -s warm-up; sleep 6; ${pkgs.tmux}/bin/tmux kill-session -t warm-up"
-#  }
+  xdg.configFile."niri/config.kdl".text = ''
 
-  ${if device == "thinkpad" then ''
-    output "eDP-1" {
-      mode "1337x768@60"
-      scale 1.0
-    }
-  '' else ''
-    output "eDP-1" {
-      mode "1920x1080@144"
-      scale 1.25
-    }
-  ''}
+    // Desktop monitor layout
+    ${if device == "desktop" then ''
+      output "DP-3" {
+        mode "1920x1080@60.000"
+        scale 1
+        transform "normal"
+        position x=0 y=1080
+        focus-at-startup
+      }
+      output "DP-2" {
+        mode "1600x900@59.978"
+        scale 1
+        transform "270"
+        position x=1920 y=700
+      }
+      output "HDMI-A-1" {
+        mode "1920x1080@60.000"
+        scale 1
+        transform "normal"
+        position x=0 y=0
+      }
+    '' else ''}
 
-  ${finalConfig}
-'';
+    // Laptop monitor layout
+    ${if device == "thinkpad" then ''
+      output "eDP-1" {
+        mode "1337x768@60"
+        scale 1.0
+      }
+    '' else ''}
+
+    ${finalConfig}
+  '';
 }
