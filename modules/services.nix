@@ -14,6 +14,13 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
 
+  services.xserver.displayManager.sessionCommands = ''
+    if [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+      . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    fi
+  '';
+
+
   services.pipewire = {
     enable = true;
     extraConfig.pipewire."92-low-latency" = {

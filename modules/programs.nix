@@ -12,6 +12,7 @@
     opentabletdriver
     mangohud
     protonup-qt
+    alacritty #temporary for troubleshooting
   ];
 
   programs.niri.enable = true;
