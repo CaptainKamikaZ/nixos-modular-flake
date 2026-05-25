@@ -7,7 +7,6 @@ let
 in
 {
   xdg.configFile."niri/config.kdl".text = ''
-
     // Desktop monitor layout
     ${if device == "desktop" then ''
       output "DP-3" {
